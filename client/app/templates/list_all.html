@@ -13,37 +13,36 @@
     <title>Address Book</title>
   </head>
   <body>
-
     <nav class="navbar navbar-expand-sm">
       <a class="navbar-brand" href="#">
         <img src="../static/images/logo.png" alt="..." height="50">
       </a>
       <h2 class="navbar-brand">Address Book</h2>
     </nav>
-
-    <br>
-   <h1>List All Contacts</h1>
-    <div class="">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-        <div class="alert alert-{{ category }}">
-          {{ message }}
-        </div>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
-  </div>
-
+    <div class="row">
+      {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          {% for message in messages %}
+              <div class="container-fluid alert alert-success">
+              {{ message }}
+              </div>
+          {% endfor %}
+          {% endif %}
+      {% endwith %}
+    </div>
   <br>
+  <h1>List All Contacts</h1>
+  <form class="details-form" method="post" name="listallform">
+    <button class="delete-button" name="button" value="add-contact-button">Add New Contact</button>
 
-  {% for contact in data %}
-  <div><p>{{ contact.first_name}}, {{ contact.last_name}}, {{ contact.phone}}, {{ contact.email}}</p></div>
-  {% endfor %}
-
-
-
-
+    {% for contact in data %}
+    <div class="contact">
+      <p>{{ contact.first_name}}, {{ contact.last_name}}, {{ contact.phone}}, {{ contact.email}}</p>
+      <button class="delete-button" name="button" value="delete-{{contact.first_name}}-{{contact.last_name}}-{{contact.email}}">Delete</button>
+      <!-- <button class="home-button" name="home" value="{{genre}}"></button>s -->
+    </div>
+    {% endfor %}
+  </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
