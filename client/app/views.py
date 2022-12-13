@@ -1,66 +1,102 @@
-from flask import request, render_template, flash, redirect, url_for, session
+from flask import request, render_template, flash, redirect, url_for, session, jsonify
 from app import app
 import requests
-from .forms import GenreForm
+from .forms import GenreForm, DetailsForm
 import json
 import time
 
 
-########################################
-# LANDING PAGE
-# landing page of the Integrated Client
-######################################
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    # define the form
-    form = GenreForm
 
+########################################
+# LIST ALL CONTACT PAGE
+# The page that deals with adding a new contact
+######################################
+@app.route('/list_all', methods=['GET', 'POST'])
+def list_all():
+
+    # make a get request to the backend api
     url = "http://127.0.0.1:5000/"
     response = requests.request("GET", url)
-    print(response.json()[0]['firstname'])
+    print(response.json()[0]['first_name'])
+    print(response.json()[1]['first_name'])
+    flash("Finding genres")
+    return render_template('list_all.html',
+                            data=response.json(),
+                           title="Address Book",)
 
 
-    if request.method == 'POST':
+########################################
+# ADD CONTACT PAGE
+# The page that deals with adding a new contact
+######################################
+@app.route('/add_contact', methods=['GET', 'POST'])
+def add_contact():
+    # define the form
+    form = DetailsForm()
+
+    # make a request to the backend api
+    if request.method == "POST":
+        print("Making request to API")
+        print(form.first_name.data)
+        print(request.data)
+
+        data = {"first_name": form.first_name.data,
+                "last_name": form.last_name.data,
+                "phone": form.phone.data,
+                "email": form.email.data }
+        
+        
+
+        # make a post request
+        url = f"http://127.0.0.1:5000/"
+        response = requests.post(url = url, json=data)
+
+        print(response)
+        print(response.status_code)
+        print(response.text)
+        # print(response.json()[0]['firstname'])
         flash("Finding genres")
-        return redirect(url_for('genres'))
+    # return redirect(url_for('genres'))
 
-    return render_template('index.html',
+    return render_template('add_contact.html',
                            title='Lanre\'s API',
-                           response = response,
+                        #    response = response,
                            form=form)
 
 
 ########################################
-# FIRST API
+# DELETE RECORD
 # queries the first API and gets a list of genres database and
 # displays all the buttons on screen
 ######################################
-@app.route('/genres', methods=['GET', 'POST'])
-def genres():
-    # define the form
-    form = GenreForm()
-    start1 = time.time()
-    # Make a request to first API
-    url = "http://127.0.0.1:5001/"
-    response = requests.request("GET", url)
-    end1 = time.time()
-    print('api1:', end1-start1)
-    
+@app.route('/delete_contact', methods=['GET', 'POST'])
+def delete_contact():
+    # get record information
 
-    # parse the response for data for the webpage
-    data = response.json()["genres"]
+    # save the information 
+    # data = {"first_name": session.get('first_name'),
+    #     "last_name": session.get('last_name'),
+    #     "phone": session.get('phone'),
+    #     "email": session.get('email')
+    #     }
+    print("Deleting record")
+    data = {
+        "first_name": "Jason",
+        "last_name": "Grimshaw",
+        "phone": "01913478123",
+        "email": "jason.grimshaw@corrie.co.uk"
+    }
 
-    # If user clicks a button,
-    # save user choice and redirect to the next page
-    if request.method == 'POST':
-        button = request.form['genre']
-        flash(f'Genre picked: {button}')
-        return redirect(url_for('genre', genre=f'{button}'))
+    # make a delete request to backend
+    # make a post request
+    url = f"http://127.0.0.1:5000/"
+    response = requests.delete(url = url, json=data)
+    print(response)
+    print(response.status_code)
+    print(response.text)
 
-    return render_template('index2.html',
-                           title='Lanre\'s API',
-                           data=data,
-                           form=form)
+    return render_template('delete_contact.html',
+                           title='Lanre\'s API')
 
 
 ########################################
