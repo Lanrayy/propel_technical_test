@@ -1,5 +1,5 @@
 from flask import request, render_template, flash, redirect, url_for, session
-from app import app, db, models
+from app import app
 import requests
 from .forms import GenreForm
 import json
@@ -15,12 +15,18 @@ def index():
     # define the form
     form = GenreForm
 
+    url = "http://127.0.0.1:5000/"
+    response = requests.request("GET", url)
+    print(response.json()[0]['firstname'])
+
+
     if request.method == 'POST':
         flash("Finding genres")
         return redirect(url_for('genres'))
 
     return render_template('index.html',
                            title='Lanre\'s API',
+                           response = response,
                            form=form)
 
 

@@ -24,7 +24,7 @@ class AddressBook(Resource):
                 print(record)
 
             # details = [{"firstname":"Jim"}]
-
+            print("Check")
             print(file_data[0])
             # return a json with all the file details
             return jsonify(file_data)
@@ -67,8 +67,5 @@ class AddressBook(Resource):
 
 
     
-api.add_resource(AddressBook, "/", "/<new_details>", "/<new_details>/<old_details>")
-
-@app.route('/')
-def index():
-    return "Hello World!!!"
+# api.add_resource(AddressBook, "/", "/<new_details>", "/<new_details>/<old_details>")
+api.add_resource(AddressBook, "/")
