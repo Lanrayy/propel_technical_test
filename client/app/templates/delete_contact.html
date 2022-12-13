@@ -28,18 +28,6 @@
      <h1 style="margin: 10px 0px; font-weight: bold">CHOOSE A GENRE!</h1>
 
     <!-- the form that will send the post request -->
-      <form action="" method="post" name="genre" value="genre">
-          {{ form.hidden_tag }}
-          <div class="button-container">
-              {% for genre in data %}
-              {% if genre %}
-              <div>
-                  <button class="button" name="genre" value="{{genre}}">{{genre}}</button>
-              </div>
-              {% endif %}
-              {% endfor %}
-          </div>
-      </form>
  </div>
 
     <!-- Optional JavaScript -->

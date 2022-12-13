@@ -21,18 +21,64 @@
           <h1 class="navbar-brand">Address Book</h1>
     </nav>
     <!-- Background image -->
-    <div class="background-image">
-    </div>
+    <!-- <div class="background-image">
+    </div> -->
 
     <!-- Title and button -->
     <div class="home-text">
         <!-- <p class"title">Find A Movie For Me</p> -->
         <p style="font-size: 70px">Find Something to watch!</p>
-        <form action="" method="post" name="genre" value="genre">
-            {{ form.hidden_tag }}
-            <button class="home-button" name="genre" value="{{genre}}">Go!</button>
-        </form>
+
+        <form class="details-form" method="post" name="detailsform">
+          {{ form.hidden_tag() }}
+          <p>
+            First Name <br>
+           {{ form.first_name(class="form-control form-control-lg margin-top-lg") }}
+            {% if form.first_name.errors %}
+            
+                  {% for error in form.name.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              {% endif %}
+          </p>
+          <p>
+            Last Name<br>
+           {{ form.last_name(class="form-control form-control-lg margin-top-lg form-select") }}
+            {% if form.last_name.errors %}
+            
+                  {% for error in form.last_name.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              {% endif %}
+          </p>
+          <p>
+            Phone<br>
+           {{ form.phone(class="form-control form-control-lg margin-top-lg form-select") }}
+            {% if form.phone.errors %}
+            
+                  {% for error in phone.screentime_a.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              {% endif %}
+          </p>
+          <p>
+            Email <br>
+           {{ form.email(class="form-control form-control-lg margin-top-lg form-select") }}
+            {% if form.email.errors %}
+            
+                  {% for error in form.email.errors %}
+                      <span>{{ error }}</span>
+                  {% endfor %}
+              {% endif %}
+          </p>
+          
+          <p><input type="submit" class="btn btn-success btn-block col-12 submit-button" value="Submit"></p>
+       
+      </form>
     </div>
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
