@@ -27,56 +27,94 @@ h1{
     font-size: 50px;
 }
 
+p, h1, h2 {
+    color: black;
+}
+
+.page-title{
+    font-size: 40px;
+    font-weight: 600;
+
+}
+
+.title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 /******************************
-HOME PAGE 
+LIST ALL PAGE
 ******************************/
-.home-button{
-    width: 220px;
-    height: 60px;
-    background-color: white;
+.add-new-contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    margin-right: 40px; 
+}
+
+
+.delete-button{
+    width: 250px;
+    height: 50px;
+    background-color: red;
+    color: white;
     border-radius: 40px;
     border: 1px solid white;
-    font-size: 30px;
+    font-size: 20px;
     margin-top: 40px;
 }
 
-.home-button:hover{
-    border: 1px solid #DC4731;
-    background-color: #DC4731;
-    color: white;
+.delete-button:hover{
+    border: 1px solid red;
+    background-color: white;
+    color: red;
     
 }
 
-.background-image{
-    background-image: url(/static/images/background2.jpg);
-    box-shadow: inset 0 0 99999px #282828;
-    /* background: linear-gradient(to top, #FFF3D9, #DC4731), url(/static/images/background.jpg) no-repeat top center; */
-    height: 740px;
-    width: 100%;
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid  #DC4731;
+    background-color: #faf5ea;
+    width: 400px;
+    height: 200px;
+    margin: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.name {
+    font-size: 30px;
+}
+
+.details {
+    font-size: 20px;
+    margin: 0px;
+}
+
+/******************************
+ADD CONTACT PAGE
+ ******************************/
+ .form-container{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    
-    -webkit-filter: blur(6px);
-
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.home-page-title{
-    font-size: 100px;
-}
-
-.home-text{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     color: white;
-    /* font-size: 70px; */
-    font-weight: bold;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -87,11 +125,37 @@ HOME PAGE
     text-align: center;
 }
 
-/******************************
- GENRES PAGE 
- ******************************/
-.button-container{
-    /* border: 1px solid red; */
+.form-field {
+    width: 400px;
+    border-radius: 40px;
+}
+
+.back-button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin-left: 40px; 
+}
+
+.back-button{
+    width: 150px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    border-radius: 40px;
+    border: 1px solid white;
+    font-size: 20px;
+    margin-top: 40px;
+}
+
+.back-button:hover{
+    border: 1px solid blue;
+    background-color: white;
+    color: blue;
+}
+
+ .button-container{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -99,23 +163,21 @@ HOME PAGE
     align-items: center;
 }
 
-.button{
-    width: 200px;
-    height: 100px;
-    border: 1px solid grey;
-    border: none;
-    border-radius: 10px;
-    margin: 15px;
+.submit-button{
+    width: 100%;
+    height: 50px;
+    background-color: green;
     color: white;
-    background-color: #DC4731;
+    border-radius: 40px;
+    border: 1px solid white;
+    font-size: 20px;
+    margin-top: 40px;
 }
 
-.button:hover{
-    border: 1px solid #DC4731;
-    border-radius: 10px;
-    margin: 15px;
-    color: #DC4731;
+.submit-button:hover{
+    border: 1px solid green;
     background-color: white;
+    color: green;
 }
 
 .genre-container{
@@ -126,38 +188,6 @@ HOME PAGE
     border: 1px solid red;
 }
 
-
-
-/******************************
- MOVIE DETAILS
- ******************************/
-.movie-container{
-    /* width: 100%; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* border: 1px solid green; */
-}
-
-.movie-group{
-    border: 1px solid #DC4731;;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 50%;
-}
-
-.movie-info{
-    font-weight: bolder;
-    font-size: 20px;
-    margin-left: 20px;
-}
-
-.movie-info > p {
-    margin: 40px 0px;
-}
-
-.movie-poster{
-    height: 400px;
-    /* height: 50px; */
+.row {
+    text-align: center;
 }

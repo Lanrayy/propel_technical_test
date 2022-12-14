@@ -5,7 +5,7 @@ from .forms import AddContactForm
 
 ########################################
 # LIST ALL CONTACTS PAGE
-# Lists all contactss
+# Lists all contacts
 ######################################
 @app.route('/list_all', methods=['GET', 'POST'])
 def list_all():
@@ -55,33 +55,38 @@ def add_contact():
 
     # make a request to the backend api
     if request.method == "POST":
-        print("Making request to API")
-        print(form.first_name.data)
-        print(request.data)
+        print(request.form)
 
-        data = {"first_name": form.first_name.data,
-                "last_name": form.last_name.data,
-                "phone": form.phone.data,
-                "email": form.email.data }
-        
-        # make a post request
-        url = f"http://127.0.0.1:5000/"
-        response = requests.post(url = url, json=data)
-
-
-        print(response.ok)
-        print(response.status_code)
-        print(response.text)
-        if response.ok == True:
-            # flash message and redirect back to the list all page
-            flash("Contact Added Successfully")
+        clicked = request.form['button']
+        if clicked == 'back-button':
             return redirect(url_for('list_all'))
         else:
-            flash('Try Again! Unable to Add contact!')
+            print("Making request to API")
+            print(form.first_name.data)
+            print(request.data)
+
+            data = {"first_name": form.first_name.data,
+                    "last_name": form.last_name.data,
+                    "phone": form.phone.data,
+                    "email": form.email.data }
+            
+            # make a post request
+            url = f"http://127.0.0.1:5000/"
+            response = requests.post(url = url, json=data)
+
+
+            print(response.ok)
+            print(response.status_code)
+            print(response.text)
+            if response.ok == True:
+                # flash message and redirect back to the list all page
+                flash("Contact Added Successfully")
+                return redirect(url_for('list_all'))
+            else:
+                flash('Try Again! Unable to Add contact!')
 
     return render_template('add_contact.html',
-                           title='Lanre\'s API',
-                        #    response = response,
+                           title='Address Book',
                            form=form)
 
 
@@ -120,5 +125,5 @@ def delete_contact():
             flash('Try Again! Unable to Delete!')
 
     return render_template('delete_contact.html',
-                           title='Lanre\'s API')
+                           title='Address Book')
 

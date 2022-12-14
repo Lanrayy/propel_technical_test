@@ -14,26 +14,24 @@
     </head>
 
     <body>
+        <!-- Nav bar -->
     <nav class="navbar navbar-expand-sm">
-          <a class="navbar-brand" href="/">
-            <img src="../static/images/logo.png" alt="..." height="50" class="d-inline-block align-text-top">
-          </a>
           <h1 class="navbar-brand">Address Book</h1>
     </nav>
-    <!-- Background image -->
-    <!-- <div class="background-image">
-    </div> -->
-
-    <!-- Title and button -->
-    <div class="home-text">
-        <!-- <p class"title">Find A Movie For Me</p> -->
-        <p style="font-size: 70px">Find Something to watch!</p>
-
+    <form method="post" name="backbuttonform">
+        <div class="back-button-container">
+            <button class="back-button" name="button" value="back-button">Back</button>
+        </div>
+    </form>
+    <!-- Title Form -->
+    <div class="form-container">
+        <h2 class="page-title" >Add New Contact</h2>
         <form class="details-form" method="post" name="detailsform">
           {{ form.hidden_tag() }}
+          <!-- First name field -->
           <p>
-            First Name <br>
-           {{ form.first_name(class="form-control form-control-lg margin-top-lg") }}
+            First Name: <br>
+           {{ form.first_name(class="form-control form-control-lg margin-top-lg form-field") }}
             {% if form.first_name.errors %}
             
                   {% for error in form.name.errors %}
@@ -41,9 +39,10 @@
                   {% endfor %}
               {% endif %}
           </p>
+          <!-- Last name field -->
           <p>
-            Last Name<br>
-           {{ form.last_name(class="form-control form-control-lg margin-top-lg form-select") }}
+            Last Name: <br>
+           {{ form.last_name(class="form-control form-control-lg margin-top-lg form-select form-field") }}
             {% if form.last_name.errors %}
             
                   {% for error in form.last_name.errors %}
@@ -51,9 +50,10 @@
                   {% endfor %}
               {% endif %}
           </p>
+          <!-- Phone Field -->
           <p>
-            Phone<br>
-           {{ form.phone(class="form-control form-control-lg margin-top-lg form-select") }}
+            Phone: <br>
+           {{ form.phone(class="form-control form-control-lg margin-top-lg form-select form-field") }}
             {% if form.phone.errors %}
             
                   {% for error in phone.screentime_a.errors %}
@@ -61,9 +61,10 @@
                   {% endfor %}
               {% endif %}
           </p>
+          <!-- Email Field -->
           <p>
-            Email <br>
-           {{ form.email(class="form-control form-control-lg margin-top-lg form-select") }}
+            Email: <br>
+           {{ form.email(class="form-control form-control-lg margin-top-lg form-select form-field") }}
             {% if form.email.errors %}
             
                   {% for error in form.email.errors %}
@@ -71,15 +72,11 @@
                   {% endfor %}
               {% endif %}
           </p>
-          
-          <p><input type="submit" class="btn btn-success btn-block col-12 submit-button" value="Submit"></p>
-       
+          <!-- Submit Button -->
+          <button class="submit-button" name="button" value="submit-button">Submit</button>
       </form>
     </div>
-
-
-
-
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

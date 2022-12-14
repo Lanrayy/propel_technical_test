@@ -13,12 +13,11 @@
     <title>Address Book</title>
   </head>
   <body>
+    <!-- Nav bar -->
     <nav class="navbar navbar-expand-sm">
-      <a class="navbar-brand" href="#">
-        <img src="../static/images/logo.png" alt="..." height="50">
-      </a>
       <h2 class="navbar-brand">Address Book</h2>
     </nav>
+    <!-- Flashed Messages -->
     <div class="row">
       {% with messages = get_flashed_messages() %}
           {% if messages %}
@@ -31,17 +30,26 @@
       {% endwith %}
     </div>
   <br>
-  <h1>List All Contacts</h1>
+  <!-- Page Title -->
+  <div class="title-container">
+    <h1 class="page-title">List All Contacts</h1>
+  </div>
+  <!-- Contact details -->
   <form class="details-form" method="post" name="listallform">
-    <button class="delete-button" name="button" value="add-contact-button">Add New Contact</button>
-
-    {% for contact in data %}
-    <div class="contact">
-      <p>{{ contact.first_name}}, {{ contact.last_name}}, {{ contact.phone}}, {{ contact.email}}</p>
-      <button class="delete-button" name="button" value="delete-{{contact.first_name}}-{{contact.last_name}}-{{contact.email}}">Delete</button>
-      <!-- <button class="home-button" name="home" value="{{genre}}"></button>s -->
+    <div class="add-new-contact-container">
+      <button class="delete-button" name="button" value="add-contact-button">Add New Contact</button>
     </div>
-    {% endfor %}
+    
+    <div class="contact-container">
+      {% for contact in data %}
+      <div class="contact">
+        <p class="name">{{ contact.first_name}} {{ contact.last_name}}</p> 
+        <p class="details">{{ contact.phone}} | {{ contact.email}}</p>
+        <button class="delete-button" name="button" value="delete-{{contact.first_name}}-{{contact.last_name}}-{{contact.email}}">Delete</button>
+        <!-- <button class="home-button" name="home" value="{{genre}}"></button>s -->
+      </div>
+      {% endfor %}
+  </div>
   </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
