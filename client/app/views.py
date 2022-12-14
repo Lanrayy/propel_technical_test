@@ -7,6 +7,7 @@ from .forms import AddContactForm
 # LIST ALL CONTACTS PAGE
 # Lists all contacts
 ######################################
+@app.route('/', methods=['GET', 'POST'])
 @app.route('/list_all', methods=['GET', 'POST'])
 def list_all():
     # make a get request to the backend api to get all contacts
