@@ -1,9 +1,8 @@
 [
     {
-        "firstname":"Jim"
-    },
-    {
-        "firstname":"Mark"
+        "first_name": "David",
+        "last_name": "Platt",
+        "phone": "01913478234",
+        "email": "david.platt@corrie.co.uk"
     }
-
 ]
