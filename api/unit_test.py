@@ -7,8 +7,39 @@ def test1():
 def test_GET():
     url = "http://127.0.0.1:5000/"
     response = requests.request("GET", url)
-    print(response.json()[0]['firstname'] == "Jim")
+    print(response.json()[0]['first_name'] == "David")
     # assert(response.firstname == "Jim")
+
+def test_POST():
+    data = {
+        "first_name": "Jason",
+        "last_name": "Grimshaw",
+        "phone": "01913478123",
+        "email": "jason.grimshaw@corrie.co.uk"
+    }
+    
+    # make a post request
+    url = f"http://127.0.0.1:5000/"
+    response = requests.post(url = url, json=data)
+    assert response.ok == True
+
+def test_DELETE():
+    data = {
+        "first_name": "Jason",
+        "last_name": "Grimshaw",
+        "phone": "01913478123",
+        "email": "jason.grimshaw@corrie.co.uk"
+    }
+    # make a post request
+    url = f"http://127.0.0.1:5000/"
+    response = requests.delete(url = url, json=data)
+    assert response.ok == True
+
+
+
+
+
+
 
 
     # assert response[0].firstname == "Jim"
